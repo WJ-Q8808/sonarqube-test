@@ -1,12 +1,15 @@
 pipeline {
         agent none
+         tools {
+                mvn 'apache-maven-3.6.3'
+                sonar
+         }
         stages {
           stage("build & SonarQube analysis") {
             agent any
-            def m3 = tool name: 'mvn'
             steps {
               withSonarQubeEnv('My SonarQube Server') {
-                sh "${m3}/bin/mvn -B -e clean install -Dmaven.test.skip=true"
+                sh "mvn -B -e clean install -Dmaven.test.skip=true"
               }
             }
           }
