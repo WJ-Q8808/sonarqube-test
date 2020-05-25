@@ -1,25 +1,25 @@
-pipeline{
-    agent any
-   stage("a1") {
-      steps{
-        echo "213"
+pipeline {
+    agent none
+    stages {
+     stage("build & SonarQube analysis") {
+       steps {
+         echo '123'
+       }
+     }
+      stage("build & SonarQube analysis") {
+        agent any
+        steps {
+          withSonarQubeEnv('My SonarQube Server') {
+            sh 'mvn clean package sonar:sonar'
+          }
+        }
       }
-     }
-
-    stage("build & SonarQube analysis") {
-          node {
-              withSonarQubeEnv('My SonarQube Server') {
-                 sh 'mvn clean package sonar:sonar'
-              }
-          }
-     }
-
-     stage("Quality Gate"){
+      stage("Quality Gate") {
+        steps {
           timeout(time: 1, unit: 'HOURS') {
-              def qg = waitForQualityGate()
-              if (qg.status != 'OK') {
-                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
-              }
+            waitForQualityGate abortPipeline: true
           }
-     }
+        }
+      }
+    }
 }
