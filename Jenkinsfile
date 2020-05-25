@@ -1,7 +1,7 @@
 pipeline {
         agent none
          tools {
-                mvn 'mvn-3.6.3'
+                maven 'maven3'
                 sonar 'sonar-4.3.0.2102'
          }
         stages {
