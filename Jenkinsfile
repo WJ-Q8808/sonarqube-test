@@ -1,8 +1,8 @@
 pipeline {
         agent none
          tools {
-                mvn 'apache-maven-3.6.3'
-                sonar
+                mvn 'mvn-3.6.3'
+                sonar 'sonar-4.3.0.2102'
          }
         stages {
           stage("build & SonarQube analysis") {
