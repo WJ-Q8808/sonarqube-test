@@ -8,7 +8,7 @@
             agent any
             steps {
               withSonarQubeEnv('ONES-Server') {
-                sh 'mvn clean package sonar:sonar'
+                sh 'mvn clean package sonar:sonar -Dsonar.projectName=xyc-sonarqube-test -Dsonar.sources=.'
               }
             }
           }
