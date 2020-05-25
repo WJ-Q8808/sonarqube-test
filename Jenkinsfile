@@ -1,24 +1,21 @@
-pipeline {
+ pipeline {
         agent none
-         tools {
-                maven 'maven-3.6.3'
-                sonar-scanner 'sonar-scanner-4.3.0'
-         }
         stages {
           stage("build & SonarQube analysis") {
             agent any
             steps {
               withSonarQubeEnv('My SonarQube Server') {
-                sh "maven -B -e clean install -Dmaven.test.skip=true"
+                sh 'mvn clean package sonar:sonar'
               }
             }
           }
-          stage("Quality Gate") {
-            steps {
+        stage("Quality Gate"){
               timeout(time: 1, unit: 'HOURS') {
-                waitForQualityGate abortPipeline: true
+                  def qg = waitForQualityGate()
+                  if (qg.status != 'OK') {
+                      error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                  }
               }
-            }
           }
         }
       }
