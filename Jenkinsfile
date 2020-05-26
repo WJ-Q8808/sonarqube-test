@@ -8,7 +8,7 @@
             agent any
             steps {
               withSonarQubeEnv('ONES-Server') {
-                sh 'mvn sonar:sonar -Dsonar.projectKey=xyc-sonarqube-test -Dsonar.login=e63c01198f8a624867f764d027c0e25dbe2e33dc'
+                sh 'mvn sonar:sonar -Dsonar.projectKey=xyc-sonarqube-test -Dsonar.login=e63c01198f8a624867f764d027c0e25dbe2e33dc' -Dsonar.java.binaries=.
               }
             }
           }
