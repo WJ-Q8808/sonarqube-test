@@ -18,7 +18,6 @@
                  timeout(time: 1, unit: 'HOURS') {
                      sleep(5)
                      def qg = waitForQualityGate()
-                     println qg.analysisId
                      println qg.status
                      if (qg.status != 'OK') {
                          error "未通过SonarQube的代码检查，请及时修改! failure: ${qg.status}"
