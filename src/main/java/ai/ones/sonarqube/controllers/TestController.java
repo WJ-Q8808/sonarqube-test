@@ -20,6 +20,8 @@ public class TestController {
     public String Hi(){
         String UserName="123";
         String PASSWORD="123";
+        String PASSWORD1="123";
+        String PASSWORD2="123";
         return UserName+ "--------"+PASSWORD;
     }
 }
