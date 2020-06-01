@@ -22,6 +22,7 @@ public class TestController {
         String PASSWORD="123";
         String PASSWORD1="123";
         String PASSWORD2="123";
+        String PASSWORD3="123";
         return UserName+ "--------"+PASSWORD;
     }
 }
