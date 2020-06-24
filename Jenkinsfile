@@ -9,7 +9,10 @@
             steps {
               withSonarQubeEnv('ONES-Server') {
                 sh 'mvn sonar:sonar -Dsonar.projectKey=xyc-sonarqube-test -Dsonar.java.binaries=.'
-                waitForQualityGate()
+                script {
+                  def qg = waitForQualityGate()
+                  println qg.status
+                }
               }
             }
           }
