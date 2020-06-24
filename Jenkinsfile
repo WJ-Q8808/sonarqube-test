@@ -11,6 +11,7 @@
                 sh 'mvn sonar:sonar -Dsonar.projectKey=xyc-sonarqube-test -Dsonar.java.binaries=.'
               }
               script {
+                sleep(5)
                 def qg = waitForQualityGate()
                 println qg.status
               }
