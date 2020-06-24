@@ -9,5 +9,7 @@
                 sh '"$MVN_HOME/bin/mvn" sonar:sonar -Dsonar.projectKey=xyc-sonarqube-test -Dsonar.java.binaries=.'
             }
           }
+          def qg = waitForQualityGate()
+          println qg.status
         }
 }
