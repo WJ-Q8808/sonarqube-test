@@ -14,7 +14,7 @@ import sun.security.util.Password;
  */
 @RestController
 public class TestController {
-
+class :
     @RequestMapping("/hi")
     public String Hi(){
         String UserName="123";
